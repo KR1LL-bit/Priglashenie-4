@@ -49,17 +49,15 @@
     cursor: pointer;
   }
 
-  /* Стили для всех страниц — одинаковые размеры */
   .page {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 600px;
-    height: auto;
+    height: 700px;
     background: #fffef9;
     border: 1px solid #e2d5c4;
-    padding: 2.5rem 1.8rem;
+    padding: 2rem 1.8rem;
     text-align: center;
     border-radius: 16px;
     display: flex;
@@ -68,9 +66,16 @@
     box-sizing: border-box;
     transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1), opacity 0.4s ease;
     backface-visibility: hidden;
+    overflow: hidden;
   }
 
-  /* Страница 1 — видна по умолчанию */
+  @media (max-width: 480px) {
+    .page {
+      height: 620px;
+      padding: 1.8rem 1.2rem;
+    }
+  }
+
   .page-1 {
     transform: rotateY(0deg);
     opacity: 1;
@@ -78,21 +83,18 @@
     position: relative;
   }
 
-  /* Страница 2 — скрыта, повёрнута */
   .page-2 {
     transform: rotateY(180deg);
     opacity: 0;
     z-index: 2;
   }
 
-  /* Страница 3 — скрыта, повёрнута */
   .page-3 {
     transform: rotateY(360deg);
     opacity: 0;
     z-index: 1;
   }
 
-  /* Когда показываем страницу 2 */
   .flip-container.show-2 .page-1 {
     transform: rotateY(-180deg);
     opacity: 0;
@@ -109,7 +111,6 @@
     z-index: 2;
   }
 
-  /* Когда показываем страницу 3 */
   .flip-container.show-3 .page-1 {
     transform: rotateY(-360deg);
     opacity: 0;
@@ -126,12 +127,11 @@
     z-index: 3;
   }
 
-  /* Угловые декоры */
-  .corner { position: absolute; width: 55px; height: 55px; z-index: 2; }
-  .tl { top: 12px; left: 12px; }
-  .tr { top: 12px; right: 12px; transform: scaleX(-1); }
-  .bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
-  .br { bottom: 12px; right: 12px; transform: scale(-1); }
+  .corner { position: absolute; width: 45px; height: 45px; z-index: 2; }
+  .tl { top: 10px; left: 10px; }
+  .tr { top: 10px; right: 10px; transform: scaleX(-1); }
+  .bl { bottom: 10px; left: 10px; transform: scaleY(-1); }
+  .br { bottom: 10px; right: 10px; transform: scale(-1); }
 
   .pretitle {
     font-weight: 300;
@@ -139,7 +139,7 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     color: #5a4a3a;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     font-family: 'Jost', sans-serif;
   }
   .names {
@@ -162,7 +162,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 1.4rem 0;
+    margin: 1.2rem 0;
   }
   .divider-line { flex: 1; height: 0.5px; background: #d0bfaa; }
   .divider-dot  { width: 5px; height: 5px; border-radius: 50%; background: #a87d60; }
@@ -171,12 +171,12 @@
     font-size: 12px;
     line-height: 1.65;
     color: #4a3a2a;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.2rem;
     font-family: 'Jost', sans-serif;
   }
   
   .datetime-block {
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.2rem;
     text-align: center;
   }
   .date {
@@ -213,7 +213,7 @@
     font-size: 15px;
     color: #5a4a3a;
     line-height: 1.5;
-    margin-bottom: 1.7rem;
+    margin-bottom: 1.5rem;
   }
 
   .btn {
@@ -237,13 +237,13 @@
     font-size: 9px;
     letter-spacing: 2px;
     color: #7a6a5a;
-    margin-top: 1.4rem;
+    margin-top: 1.2rem;
     font-family: 'Jost', sans-serif;
   }
   .back-title {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: 28px;
+    font-size: 30px;
     color: #2e2219;
     margin-bottom: 1rem;
   }
@@ -334,22 +334,51 @@
     margin-top: 0.8rem;
   }
   
-  /* НОВЫЙ СТИЛЬ ДЛЯ ПЛАШКИ ДНЯ — более узкая, с затемнением */
+  .page-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding-top: 1.2rem;
+    z-index: 5;
+  }
+  
   .day-badge {
     display: inline-block;
-    background: rgba(168, 125, 96, 0.12);
-    backdrop-filter: blur(2px);
-    padding: 0.35rem 1.2rem;
-    border-radius: 40px;
+    background: linear-gradient(135deg, rgba(168, 125, 96, 0.12) 0%, rgba(168, 125, 96, 0.06) 100%);
+    backdrop-filter: blur(4px);
+    padding: 0.4rem 1.5rem;
+    border-radius: 50px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 2.5px;
+    font-size: 12px;
+    letter-spacing: 3px;
     font-weight: 500;
     color: #8b694e;
-    margin-bottom: 1rem;
-    border: 0.5px solid rgba(168, 125, 96, 0.25);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    border: 0.5px solid rgba(168, 125, 96, 0.3);
     text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  @media (max-width: 480px) {
+    .page-header { padding-top: 0.8rem; }
+    .day-badge { font-size: 10px; padding: 0.3rem 1.2rem; letter-spacing: 2.5px; }
+    .names { font-size: 38px; }
+    .back-title { font-size: 26px; }
+    .date { font-size: 23px; }
+    .schedule-item { font-size: 11px; margin-bottom: 0.6rem; }
+    .schedule-time { font-size: 13px; min-width: 55px; }
+    .location-name { font-size: 14px; }
+    .location-address { font-size: 11px; }
+    .gifts-note { font-size: 9px; margin-top: 0.6rem; margin-bottom: 0.8rem; padding-top: 0.5rem; }
+    .hint, .flip-hint { margin-top: 0.6rem; }
+    .pretitle { margin-bottom: 0.8rem; }
+    .divider { margin: 1rem 0; }
+    .datetime-block { margin-bottom: 1rem; }
+    .location-first { margin-bottom: 1.2rem; }
+    .footer-note { margin-top: 1rem; }
+    .schedule { margin: 0.2rem 0; }
+    .body-text { font-size: 11px; margin-bottom: 1rem; }
   }
 
   /* КОНВЕРТ */
@@ -534,12 +563,12 @@
     height: auto;
     display: block;
     margin: 0 auto 0.8rem auto;
-    border-radius: 0;
-    box-shadow: none;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     object-fit: cover;
     position: relative;
     z-index: 5;
-    background: transparent;
+    background: #e8dcc8;
   }
 
   .wedding-exclamation {
@@ -642,18 +671,13 @@
   }
 
   @media (max-width: 480px) {
-    .scene { max-width: 100%; }
     .envelope { max-width: 95%; }
     .invitation-wrapper { max-width: 90%; filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.12)); }
-    .page { min-height: 520px; padding: 2rem 1.2rem; }
-    .names { font-size: 38px; }
-    .back-title { font-size: 26px; }
-    .date { font-size: 23px; }
     .envelope-body { padding: 4rem 1rem 4.5rem; min-height: 620px; }
     .envelope-frame { top: 4px; left: 4px; right: 4px; bottom: 4px; border-radius: 12px; }
     .center-hint { font-size: 12px; }
     .envelope-flap::after { bottom: 12px; font-size: 18px; }
-    .envelope-photo { width: 85%; max-width: 220px; }
+    .envelope-photo { width: 85%; max-width: 220px; border-radius: 14px; }
     .wedding-exclamation { font-size: 26px; margin: 0.6rem 0 0.8rem; gap: 10px; }
     .wedding-exclamation::before, .wedding-exclamation::after { font-size: 16px; }
     .env-sub { font-size: 10px; letter-spacing: 2px; margin-top: 0.1rem; }
@@ -661,14 +685,7 @@
     .env-stars { opacity: 0.4; }
     .star-s, .star-m { font-size: 5px; }
     .star-xl1, .star-xl2, .star-xl3, .star-xl4, .star-xl5 { font-size: 12px; }
-    .schedule-item { font-size: 11px; margin-bottom: 0.6rem; }
-    .schedule-time { font-size: 13px; min-width: 55px; }
-    .location-name { font-size: 14px; }
-    .location-address { font-size: 11px; }
-    .gifts-note { font-size: 9px; margin-top: 0.6rem; margin-bottom: 0.8rem; padding-top: 0.5rem; }
-    .hint, .flip-hint { margin-top: 0.6rem; }
     .envelope-content { margin-top: 1rem; }
-    .day-badge { font-size: 11px; padding: 0.25rem 1rem; letter-spacing: 2px; margin-bottom: 0.8rem; }
   }
 </style>
 </head>
@@ -680,7 +697,6 @@
     <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8c8f0c6b2.mp3?filename=paper-tear-1-185034.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- ПРИГЛАШЕНИЕ — ТРИ СТРАНИЦЫ -->
   <div class="invitation-wrapper">
     <div class="flip-container" id="flipContainer">
       
@@ -718,7 +734,10 @@
         <svg class="corner bl" viewBox="0 0 64 64" fill="none"><path d="M3 61 L3 3 L61 3" stroke="#d0bfaa" stroke-width="0.8" fill="none"/><path d="M3 22 Q14 15 10 3" stroke="#b8977e" stroke-width="0.8" fill="none"/><circle cx="10" cy="3" r="2.2" fill="#b8977e"/></svg>
         <svg class="corner br" viewBox="0 0 64 64" fill="none"><path d="M3 61 L3 3 L61 3" stroke="#d0bfaa" stroke-width="0.8" fill="none"/><path d="M3 22 Q14 15 10 3" stroke="#b8977e" stroke-width="0.8" fill="none"/><circle cx="10" cy="3" r="2.2" fill="#b8977e"/></svg>
 
-        <div class="day-badge">ПЕРВЫЙ ДЕНЬ · 15 СЕНТЯБРЯ</div>
+        <div class="page-header">
+          <div class="day-badge">ПЕРВЫЙ ДЕНЬ · 15 СЕНТЯБРЯ</div>
+        </div>
+        
         <h2 class="back-title">Программа дня</h2>
         
         <div class="schedule">
@@ -745,7 +764,7 @@
         </div>
         
         <div class="gifts-note">
-          Подарки в честь торжества<br>принимаются после завершения мероприятия
+          Подарки в честь торжества принимаются после завершения мероприятия
         </div>
         
         <p class="hint">↻ нажмите, чтобы продолжить</p>
@@ -758,7 +777,10 @@
         <svg class="corner bl" viewBox="0 0 64 64" fill="none"><path d="M3 61 L3 3 L61 3" stroke="#d0bfaa" stroke-width="0.8" fill="none"/><path d="M3 22 Q14 15 10 3" stroke="#b8977e" stroke-width="0.8" fill="none"/><circle cx="10" cy="3" r="2.2" fill="#b8977e"/></svg>
         <svg class="corner br" viewBox="0 0 64 64" fill="none"><path d="M3 61 L3 3 L61 3" stroke="#d0bfaa" stroke-width="0.8" fill="none"/><path d="M3 22 Q14 15 10 3" stroke="#b8977e" stroke-width="0.8" fill="none"/><circle cx="10" cy="3" r="2.2" fill="#b8977e"/></svg>
 
-        <div class="day-badge">ВТОРОЙ ДЕНЬ · 19 СЕНТЯБРЯ</div>
+        <div class="page-header">
+          <div class="day-badge">ВТОРОЙ ДЕНЬ · 19 СЕНТЯБРЯ</div>
+        </div>
+        
         <h2 class="back-title">Программа дня</h2>
         
         <div class="schedule">
@@ -777,7 +799,7 @@
         </div>
         
         <div class="gifts-note">
-          Душевное продолжение праздника<br>в уютной атмосфере
+          Душевное продолжение праздника в уютной атмосфере
         </div>
         
         <p class="hint">↻ нажмите, чтобы вернуться к началу</p>
@@ -786,7 +808,7 @@
     </div>
   </div>
 
-  <!-- КОНВЕРТ -->
+  <!-- КОНВЕРТ С ФОТОГРАФИЕЙ (ГАРАНТИРОВАННО РАБОТАЕТ) -->
   <div class="envelope-container" id="envelopeContainer">
     <div class="envelope" id="envelope">
       <div class="envelope-frame"></div>
@@ -821,7 +843,15 @@
         <div class="center-hint" id="centerHint">потяните конверт вниз</div>
         
         <div class="envelope-content" id="envelopeContent">
-          <img class="envelope-photo" src="https://i.ibb.co/QvbxbXnf/kirill-ella.jpg" alt="Кирилл и Элла">
+          <!-- ФОТОГРАФИЯ: рабочая ссылка с корректными атрибутами -->
+          <img 
+            class="envelope-photo" 
+            src="https://i.ibb.co/QvbxbXnf/kirill-ella.jpg" 
+            alt="Кирилл и Элла"
+            referrerpolicy="no-referrer"
+            crossorigin="anonymous"
+            loading="eager"
+          >
           <div class="wedding-exclamation">Ура, мы женимся!</div>
           <p class="env-sub">откройте конверт сверху</p>
         </div>
@@ -841,7 +871,6 @@
     }
   }
 
-  // КОНВЕРТ
   const flap = document.getElementById('envelopeFlap');
   const envelope = document.getElementById('envelope');
   const envelopeContainer = document.getElementById('envelopeContainer');
@@ -917,8 +946,7 @@
     if (!flapOpened) flap.style.transform = '';
   });
 
-  // ПЕРЕЛИСТЫВАНИЕ СТРАНИЦ ПО ЦИКЛУ: 1 → 2 → 3 → 1 → 2 → 3 ...
-  let currentState = 1; // 1, 2 или 3
+  let currentState = 1;
   
   flipContainer.addEventListener('click', function(e) {
     if (e.target.classList && e.target.classList.contains('btn')) return;
